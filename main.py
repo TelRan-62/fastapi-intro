@@ -1,7 +1,11 @@
-from fastapi import FastAPI
+from threading import Thread
 
-app = FastAPI()
+def worker():
+    print("Worker thread started")
+    print("Worker thread finished")
 
-@app.get("/health")
-async def health():
-    return {"status": "ok"}
+thread = Thread(target=worker)
+
+thread.start()
+
+print("Main thread working")
